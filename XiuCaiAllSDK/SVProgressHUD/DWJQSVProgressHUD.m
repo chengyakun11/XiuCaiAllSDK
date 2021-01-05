@@ -14,14 +14,14 @@
 #import "DWJQSVProgressAnimatedView.h"
 #import "DWJQSVRadialGradientLayer.h"
 
-NSString * const SVProgressHUDDidReceiveTouchEventNotification = @"SVProgressHUDDidReceiveTouchEventNotification";
-NSString * const SVProgressHUDDidTouchDownInsideNotification = @"SVProgressHUDDidTouchDownInsideNotification";
-NSString * const SVProgressHUDWillDisappearNotification = @"SVProgressHUDWillDisappearNotification";
-NSString * const SVProgressHUDDidDisappearNotification = @"SVProgressHUDDidDisappearNotification";
-NSString * const SVProgressHUDWillAppearNotification = @"SVProgressHUDWillAppearNotification";
-NSString * const SVProgressHUDDidAppearNotification = @"SVProgressHUDDidAppearNotification";
+NSString * const SVProgressHUDDidReceiveTouchEventNotification1 = @"SVProgressHUDDidReceiveTouchEventNotification";
+NSString * const SVProgressHUDDidTouchDownInsideNotification1 = @"SVProgressHUDDidTouchDownInsideNotification";
+NSString * const SVProgressHUDWillDisappearNotification1 = @"SVProgressHUDWillDisappearNotification";
+NSString * const SVProgressHUDDidDisappearNotification1 = @"SVProgressHUDDidDisappearNotification";
+NSString * const SVProgressHUDWillAppearNotification1 = @"SVProgressHUDWillAppearNotification";
+NSString * const SVProgressHUDDidAppearNotification1 = @"SVProgressHUDDidAppearNotification";
 
-NSString * const SVProgressHUDStatusUserInfoKey = @"SVProgressHUDStatusUserInfoKey";
+NSString * const SVProgressHUDStatusUserInfoKey1 = @"SVProgressHUDStatusUserInfoKey";
 
 static const CGFloat SVProgressHUDParallaxDepthPoints = 10.0f;
 static const CGFloat SVProgressHUDUndefinedProgress = -1;
@@ -643,7 +643,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 }
 
 - (NSDictionary*)notificationUserInfo {
-    return (self.statusLabel.text ? @{SVProgressHUDStatusUserInfoKey : self.statusLabel.text} : nil);
+    return (self.statusLabel.text ? @{SVProgressHUDStatusUserInfoKey1 : self.statusLabel.text} : nil);
 }
 
 - (void)positionHUD:(NSNotification*)notification {
@@ -743,7 +743,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 #pragma mark - Event handling
 
 - (void)controlViewDidReceiveTouchEvent:(id)sender forEvent:(UIEvent*)event {
-    [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidReceiveTouchEventNotification
+    [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidReceiveTouchEventNotification1
                                                         object:self
                                                       userInfo:[self notificationUserInfo]];
     
@@ -751,7 +751,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     CGPoint touchLocation = [touch locationInView:self];
     
     if(CGRectContainsPoint(self.hudView.frame, touchLocation)) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidTouchDownInsideNotification
+        [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidTouchDownInsideNotification1
                                                             object:self
                                                           userInfo:[self notificationUserInfo]];
     }
@@ -910,7 +910,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     // Show if not already visible
     if(self.backgroundView.alpha != 1.0f) {
         // Post notification to inform user
-        [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDWillAppearNotification
+        [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDWillAppearNotification1
                                                             object:self
                                                           userInfo:[self notificationUserInfo]];
         
@@ -933,7 +933,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
                 [self registerNotifications];
                 
                 // Post notification to inform user
-                [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidAppearNotification
+                [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidAppearNotification1
                                                                     object:self
                                                                   userInfo:[self notificationUserInfo]];
                 
@@ -993,7 +993,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
         if(strongSelf){
             
             // Post notification to inform user
-            [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDWillDisappearNotification
+            [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDWillDisappearNotification1
                                                                 object:nil
                                                               userInfo:[strongSelf notificationUserInfo]];
             
@@ -1027,7 +1027,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
                     [[NSNotificationCenter defaultCenter] removeObserver:strongSelf];
                     
                     // Post notification to inform user
-                    [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidDisappearNotification
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidDisappearNotification1
                                                                         object:strongSelf
                                                                       userInfo:[strongSelf notificationUserInfo]];
                     
